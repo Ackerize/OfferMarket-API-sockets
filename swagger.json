@@ -1,0 +1,23 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Offer Market API",
+    "description": "Offer Market API",
+    "version": "1.1.0",
+    "contact": {
+      "name": "David Vallecios",
+      "url": "https://github.com/Ackerize",
+      "email": "dvallecios@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://offer-market.netlify.app/.netlify/functions/server/api/v1",
+      "description": "Production server"
+    },
+    {
+      "url": "http://localhost:3001/.netlify/functions/server/api/v1",
+      "description": "Development server"
+    }
+  ]
+}
