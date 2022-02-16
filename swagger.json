@@ -19,5 +19,128 @@
       "url": "http://localhost:3001/.netlify/functions/server/api/v1",
       "description": "Development server"
     }
-  ]
+  ],
+  "basePath": "/api/v1.1",
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Crear un usuario",
+        "description": "Registrar usuario en la base de datos",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "uid": {
+                    "type": "string",
+                    "description": "uid del usuario",
+                    "example": "CP9l8L1viLU77KrEOEDj2tNRCYq2"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "email del usuario",
+                    "example": "usuario@proveedor.com"
+                  }
+                },
+                "required": [
+                  "uid",
+                  "email"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuario creado con éxito.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "example": "false",
+                      "description": "Indica que la petición fue exitosa"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "example": "201",
+                      "description": "Status code de la petición"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Usuario creado",
+                      "description": "Mensaje indicando el resultado de la petición"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Usuario ya existe en la base de datos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "example": "true",
+                      "description": "Indica que la petición no tuvo éxito"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "example": "400",
+                      "description": "Status code de la petición"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Usuario encontrado",
+                      "description": "Mensaje indicando el resultado de la petición"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error en el servidor.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "example": "true",
+                      "description": "Indica que la petición no tuvo éxito"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "example": "500",
+                      "description": "Status code de la petición"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Ocurrió un error inesperado en el servidor",
+                      "description": "Mensaje indicando el resultado de la petición"
+                    },
+                    "errorMessage": {
+                      "type": "string",
+                      "example": "create() is not a function",
+                      "description": "Mensaje que ofrece más detalles sobre el error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

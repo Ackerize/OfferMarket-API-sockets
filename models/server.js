@@ -11,6 +11,7 @@ const swaggerDoc = require('../swagger.json');
 
 const Sockets = require("./sockets");
 const { dbConnection } = require("../config/database");
+const principalRouter = require('../routes/index');
 
 class Server {
   constructor() {
@@ -45,6 +46,8 @@ class Server {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(cookieParser());
+
+    this.app.use('/api/v1.1', principalRouter);
 
   }
 
